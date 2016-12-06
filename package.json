@@ -23,6 +23,7 @@
     "colors": "^1.1.2",
     "gulp": "gulpjs/gulp#4.0",
     "gulp-concat": "^2.6.0",
+    "gulp-csscomb": "^3.0.8",
     "gulp-html-replace": "^1.6.1",
     "gulp-nodemon": "^2.1.0",
     "gulp-postcss": "^6.1.1",

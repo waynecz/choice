@@ -9,6 +9,7 @@ const maps         = require('gulp-sourcemaps');
 const sprite       = require("gulp-tmtsprite");
 const gulpif       = require('gulp-if');
 const concat       = require('gulp-concat');
+const csscomb      = require('gulp-csscomb');
 require('colors');
 
 // >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
@@ -56,10 +57,9 @@ gulp.task('css:dev', () => {
 	return gulp.src(path.resolve(__dirname, 'src/sass/style-output.scss'))
 		.pipe(maps.init())
 		.pipe(sass({outputStyle: 'compact'}).on('error', sass.logError))
-		.pipe(postcss(processors))
+		.pipe(csscomb())
 		.pipe(maps.write())
 		.pipe(gulp.dest(path.resolve(__dirname, 'public/css/')))
-		.pipe(gulp.dest(path.resolve(__dirname, 'public/www/css/')));
 });
 
 gulp.task('css:pro', () => {
@@ -67,7 +67,6 @@ gulp.task('css:pro', () => {
 		.pipe(sass({outputStyle: 'compressed'}).on('error', sass.logError))
 		.pipe(postcss(processors))
 		.pipe(gulp.dest(path.resolve(__dirname, 'public/css/')))
-		.pipe(gulp.dest(path.resolve(__dirname, 'public/www/css/')));
 });
 
 // >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
