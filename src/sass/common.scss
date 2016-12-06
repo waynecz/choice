@@ -1,0 +1,130 @@
+* {
+    box-sizing: border-box;
+}
+
+html,
+body {
+    position: relative;
+}
+
+body {
+    min-width: 1140px;
+    background: #fff;
+    &.yes {
+        background: $pr;
+    }
+    @include res('m') {
+        min-width: 100%;
+        max-width: 100%;
+        overflow-x: hidden;
+    }
+}
+
+.success {
+    display: none;
+    position: fixed;
+    top: 10%;
+    left: 0;
+    right: 0;
+    width: 106px;
+    margin: 0 auto;
+    padding: 12px 25px 15px;
+    background: #fff;
+    z-index: 11;
+    border-radius: 2px;
+    box-shadow: 0 16px 28px 0 rgba(0, 0, 0, 0.22), 0 25px 55px 0 rgba(0, 0, 0, 0.21);
+    .iconfont {
+        display: block;
+        text-align: center;
+        font-size: 40px;
+        color: #3cc3a5;
+    }
+    .des {
+        font-size: 14px;
+        color: #555;
+        padding-top: 10px;
+    }
+}
+
+.kill-ie {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: #fff;
+    z-index: 22;
+    text-align: center;
+    font-size: 30px;
+    color: #333;
+    padding-top: 300px;
+    .iconfont {
+        font-size: 50px;
+        padding-right: 20px;
+    }
+    .alert-link {
+        color: $pr;
+    }
+}
+
+.loading {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    background: #fafafa;
+    z-index: 24;
+    perspective: 200px;
+    transform-style: preserve-3d;
+    transition: 3s cubic-bezier(0.2, 1, 0.3, 1);
+    &__circle {
+        display: block;
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        right: 0;
+        left: 0;
+        margin: auto;
+        height: 60px;
+        width: 60px;
+        color: $wt;
+        text-align: center;
+        font-size: 30px;
+        line-height: 60px;
+        font-weight: 600;
+        background: $pr;
+        border-radius: 50%;
+        box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
+        animation: LOADING 1s cubic-bezier(0.29, -0.33, 0.62, 1.08) infinite;
+        &:after {
+            position: absolute;
+            content: '';
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            bottom: 0;
+            right: 0;
+            transform: translate(-100%, -100%);
+            z-index: -1;
+            animation: SCALE 1s cubic-bezier(0.29, -0.33, 0.62, 1.08) infinite;
+        }
+    }
+
+    &.end {
+        background: $pr;
+        opacity: 0.5;
+        .loading__circle {
+            animation: LOADED 1s cubic-bezier(0.2, 1, 0.3, 1) forwards;
+            &:after {
+                animation: none;
+            }
+        }
+    }
+}
+
+@include res('m') {
+    ::-webkit-scrollbar {
+        width: 0;
+    }
+}

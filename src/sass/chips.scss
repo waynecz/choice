@@ -1,0 +1,43 @@
+$primary: #1e1e1f;
+$warning: #f0d167;
+$white: #fff;
+$info: #3d98fe;
+$error: #ff5369;
+
+.shadow {
+    display: none;
+}
+
+.mob--show {
+    display: none;
+    @include res('m') {
+        display: block;
+    }
+}
+.mob--hide {
+    display: block;
+    @include res('m') {
+        display: none;
+    }
+}
+
+.cf {
+    *zoom: 1;
+    &:after {
+        content: '\200B';
+        display: block;
+        height: 0;
+        clear: both;
+    }
+}
+
+
+.justify {
+    text-align: justify;
+    &:after {
+        content: '';
+        display: inline-block;
+        position: relative;
+        width: 100%;
+    }
+}

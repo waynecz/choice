@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<base href="/">
+<html lang="zh-CN-HANS">
+<head>
+    <meta charset="UTF-8">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="apple-mobile-web-app-title" content="">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="Description" content="SIMBOSS">
+    <meta name="Keywords" content="">
+    <meta name="description" content="">
+    <link rel="shortcut icon" href="favicon.ico">
+    <script>
+        !function () {
+            function a() {
+                var clientWidth = document.documentElement.clientWidth;
+                clientWidth <= 800
+                        ? document.documentElement.style.fontSize = (clientWidth / 20) + 'px'
+                        : document.documentElement.style.fontSize = 16 + 'px';
+            }
+            var b = null;
+            window.addEventListener("resize", function () {
+                clearTimeout(b);
+                b = setTimeout(a, 300)
+            }, !1);
+            a();
+        }(window);
+    </script>
+    <title>{{title}}</title>
+    <link rel="stylesheet" href="css/style-output.css?t=1480931086881">
+</head>
