@@ -7,7 +7,6 @@ const autoprefixer = require('autoprefixer');
 const postcss      = require('gulp-postcss');
 const maps         = require('gulp-sourcemaps');
 const sprite       = require("gulp-tmtsprite");
-const gulpif       = require('gulp-if');
 const concat       = require('gulp-concat');
 const csscomb      = require('gulp-csscomb');
 require('colors');
@@ -121,7 +120,7 @@ gulp.task('ts', (cb) => {
 // >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 
 gulp.task('js', (cb) => {
-	gulp.src(['./public/www/js/cookie.js', './public/www/js/pace.js', './public/www/js/aos.js', './public/www/js/common.js'])
+	gulp.src(['./public/js/pace.js', './public/js/aos.js', './public/js/utils.js'])
 		.pipe(concat('bundle.js'))
 		.pipe(gulp.dest('./public/js'));
 	cb()
