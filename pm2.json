@@ -1,13 +1,13 @@
 {
   "apps": [{
-    "name": "carcatcher-offical",
+    "name": "offical",
     "script": "bin/www",
     "exec_mode": "cluster",
     "instances": 1,
     "max_memory_restart": "256M",
     "autorestart": true,
     "env": {
-      "NODE_ENV": "development"
+      "NODE_ENV": "production"
     }
   }]
 }
