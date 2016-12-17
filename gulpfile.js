@@ -6,7 +6,6 @@ const sass         = require('gulp-sass');
 const autoprefixer = require('autoprefixer');
 const postcss      = require('gulp-postcss');
 const maps         = require('gulp-sourcemaps');
-const sprite       = require("gulp-tmtsprite");
 const concat       = require('gulp-concat');
 const csscomb      = require('gulp-csscomb');
 require('colors');
