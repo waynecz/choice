@@ -20,7 +20,7 @@ app.set('views', path.join(__dirname, 'views'));
 app.engine('.html', template.__express);
 app.set('view engine', 'html');
 
-app.use(favicon(path.join(__dirname, 'public/www', 'favicon.ico')));
+app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 
 // 打印请求
 app.use(logger('dev'));
@@ -39,7 +39,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 // 全局应用index路由配置，具体路由配置进index设置
-app.use('/www', routes);
+app.use('/', routes);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
