@@ -126,7 +126,7 @@ gulp.task('js', (cb) => {
 });
 
 gulp.task('watch:js', () => {
-	gulp.watch('./public/js/**.js',
+	gulp.watch('./public/js/main.js',
 		gulp.parallel('js')
 	);
 });
