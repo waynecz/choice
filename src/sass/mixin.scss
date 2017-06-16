@@ -1,49 +1,139 @@
+// Colors
+$primary: #262a2d;
+$accent: #1badb4;
+$grey: #2a2d33;
+$grey2: #3f454e;
+$unware: mix($grey, white, 90%);
+$die: #7a8593;
+$disabled: #828282;
+$warning: #cf2e96;
+
+$mask-color: mix($accent, mix($primary, transparent, 90%), 10%);
+
+$get: #0c84ce;
+$post: #03e16b;
+$put: #d4be0d;
+$delete: #ff0000;
+$patch: #ff7e00;
+
+// 长宽高
+$app-min-width: 1300px;
+$title-line-height: 83px;
+$navigator-width: 80px;
+
+// 渐变
+$accent-gradient: linear-gradient(to right, mix(white, $accent, 30%), $accent);
+
+// 卡片阴影
+$card-shadow: 0 4px 5px 0 rgba(0, 0, 0, 0.14),
+0 1px 10px 0 rgba(0, 0, 0, 0.12),
+0 2px 4px -1px rgba(0, 0, 0, 0.3);
+
+// 左边导航阴影
+$navigator-shadow: 0 16px 24px 2px rgba(0, 0, 0, 0.14),
+0 6px 30px 5px rgba(0, 0, 0, 0.12),
+0 8px 10px -5px rgba(0, 0, 0, 0.3);
+
+// 搜索栏阴影
+$search-bar-shadow: 0 16px 24px 2px rgba(0, 0, 0, 0.11),
+0 6px 30px 5px rgba(0, 0, 0, 0.08),
+0 8px 10px -5px rgba(0, 0, 0, 0.2);
+
+// 表格头部轻阴影
+$table-head-shadow: 0 6px 10px -2px rgba(0, 0, 0, 0.12),
+0 3px 10px 5px rgba(0, 0, 0, 0.08),
+0 4px 2px -5px rgba(0, 0, 0, 0.12);
+
+// 弥撒阴影
+$diffuse-shadow: 0 0 24px 2px rgba(0, 0, 0, 0.24),
+0 6px 50px 5px rgba(0, 0, 0, 0.22),
+0 8px 20px -5px rgba(0, 0, 0, 0.3);
+
+// 小东西的阴影 譬如switch滑块
+$little-shadow: 0 1px 3px rgba(0, 0, 0, .2),
+0 1px 1px rgba(0, 0, 0, .14),
+0 2px 1px -1px rgba(0, 0, 0, .12);
+
+
+// 各个断点
 $breakpoints: (
-        'm' : (max-width: 740px),
-        'p' : (min-width: 741px),
+    'xs' : (max-width: $app-min-width),
+    's' : (max-width: 1550px),
+    'm' : (max-width: 1699px),
+    'l' : (min-width: 1700px),
+    'xxl' : (min-width: 2500px),
 );
 
+// 打断点的快捷写法
 @mixin res($name) {
-    // If the key exists in the map
+    // 循环断点Map，如果存在则返回
     @if map-has-key($breakpoints, $name) {
-        // Prints a media query based on the value
         @media #{inspect(map-get($breakpoints, $name))} {
             @content;
         }
-    }
-
-        // If the key doesn't exist in the map
-    @else {
-        @warn "Unfortunately, no value could be retrieved from `#{$breakpoint}`. "
-        + "Please make sure it is defined in `$breakpoints` map.";
+    } @else {
+        @warn "没有这个断点哦 `#{$breakpoints}`。";
     }
 }
 
-$disgndraftwidth: 750;
-
-@function r($n) {
-    @return ($n / $disgndraftwidth) * 20 + rem;
+// BEM快捷写法...其实也没有多快捷...
+@mixin e($element) {
+    &__#{$element} {
+        @content
+    }
 }
 
-@function ts($time) {
-    @return $time +s cubic-bezier(0.4, 0, 0.2, 1);
+@mixin m($element) {
+    &-#{$element} {
+        @content
+    }
 }
 
-@function ts2($time) {
-    @return $time + s cubic-bezier(0.2, 1, 0.3, 1);
+// 透明度
+@function alpha($color, $percentage) {
+    @return mix($color, transparent, $percentage * 1%)
 }
 
-@function ty($number) {
-    @return translateY($number)
+// 最常用 timing-func
+@function most-useful-timing() {
+    @return cubic-bezier(0.4, 0, 0.2, 1)
 }
 
-@function tx($number) {
-    @return translateX($number)
+// 一些快捷的transform语法
+@function t($time) {
+    @return $time +s most-useful-timing();
 }
 
-@mixin vm() {
-    position: absolute;
-    top: 50%;
-    transform: ty(-50%);
+@function tx($offsetX) {
+    @return translateX($offsetX);
 }
 
+@function ty($offsetY) {
+    @return translateY($offsetY);
+}
+
+@function txy($offsetX, $offsetY) {
+    @return translate($offsetX, $offsetY);
+}
+
+// 最常用transition
+@mixin ts {
+    transition: 0.2s most-useful-timing();
+}
+
+// 弥散阴影生成器 V1.0
+@function diffuse($color, $a1, $a2,$a3, $of1, $of2, $of3) {
+    @return 0 0 $of1 0 mix($color, transparent, $a1),
+    0 0 $of2 0 mix($color, transparent, $a2),
+    0 0 $of3 0 mix($color, transparent, $a3);
+}
+
+// 弥散阴影生成器 V2.0
+@function diffuse-shadow($color, $offset) {
+    @return 0 0 $offset * 2/ 9 0 mix(darken($color, 15%), transparent, 32%),
+    0 0 $offset * 2/3 0 mix(darken($color, 10%), transparent, 44%),
+    0 0 $offset 0 mix(darken($color, 5%), transparent, 56%);
+}
+
+// accent色弥散阴影
+$accent-diffuse-shadow: diffuse($accent, 42, 62, 52, 20px, 62px, 92px);
